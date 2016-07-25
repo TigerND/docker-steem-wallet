@@ -11,7 +11,7 @@ if [[ ! -f /witness_node_data_dir/config.ini ]]; then
     exit 0
 fi
 
-/usr/local/bin/steemd ${STEEMD_ARGS} $*
+/usr/local/bin/steemd --rpc-endpoint ${STEEMD_ARGS} $*
 
 if [[ $? -ne 0 ]]; then
     exit 1
