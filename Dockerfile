@@ -5,7 +5,7 @@ MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
-ENV STEEMD_ARGS="--rpc-endpoint"
+ENV STEEMD_ARGS="--replay-blockchain"
 
 RUN mkdir -p /root/src
 
