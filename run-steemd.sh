@@ -8,7 +8,6 @@ fi
 if [[ ! -f /witness_node_data_dir/config.ini ]]; then
     cp /root/src/config.ini.sample /witness_node_data_dir/config.ini
     echo "Sample config file is copied to your data dir."
-    exit 0
 fi
 
 /usr/local/bin/steemd --rpc-endpoint ${STEEMD_ARGS} $*
