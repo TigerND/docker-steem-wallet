@@ -9,6 +9,21 @@ ENV STEEMD_ARGS="--replay-blockchain"
 
 RUN mkdir -p /root/src
 
+RUN cd /root ;\
+    pwd &&\
+    wget -O boost_1_60_0.tar.gz http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz/download &&\
+    tar xfz boost_1_60_0.tar.gz &&\
+    ( \
+      cd boost_1_60_0 ;\
+      ( \
+        ./bootstrap.sh --prefix=/usr &&\
+        ./b2 install \
+      ) \
+    ) &&\
+    cd /root ;\
+    pwd &&\
+    rm -Rf boost_1_60_0 boost_1_60_0.tar.gz
+
 RUN cd /root/src ;\
     git clone https://github.com/steemit/steem.git steem &&\
     ( \
