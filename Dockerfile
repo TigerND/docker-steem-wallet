@@ -1,5 +1,5 @@
 
-FROM teego/steem-base:latest
+FROM teego/steem-base:Ubuntu-trusty
 
 MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
