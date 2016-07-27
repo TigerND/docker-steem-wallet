@@ -1,11 +1,16 @@
 
-FROM teego/steem-base:latest
+FROM teego/steem-base:0.2
 
 MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
 ENV STEEMD_ARGS="--replay-blockchain"
+
+RUN apt-get install -qy --no-install-recommends \
+    libboost-all-dev
+
+RUN apt-get clean -qy
 
 RUN mkdir -p /root/src
 
@@ -23,7 +28,7 @@ RUN cd /root/src ;\
         make install \
       ) \
     )
-    
+
 RUN mkdir -p /witness_node_data_dir &&\
     touch /witness_node_data_dir/.default_dir
 
