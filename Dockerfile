@@ -1,13 +1,11 @@
 
-FROM teego/steem-base:Ubuntu-trusty
+FROM teego/steem-base:0.2-Ubuntu-trusty
 
 MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
 ENV STEEMD_ARGS="--replay-blockchain"
-
-RUN mkdir -p /root/src
 
 RUN cd /root ;\
     pwd &&\
@@ -24,6 +22,8 @@ RUN cd /root ;\
     pwd &&\
     rm -Rf boost_1_60_0 boost_1_60_0.tar.gz
 
+RUN mkdir -p /root/src
+
 RUN cd /root/src ;\
     git clone https://github.com/steemit/steem.git steem &&\
     ( \
@@ -38,7 +38,7 @@ RUN cd /root/src ;\
         make install \
       ) \
     )
-    
+
 RUN mkdir -p /witness_node_data_dir &&\
     touch /witness_node_data_dir/.default_dir
 
