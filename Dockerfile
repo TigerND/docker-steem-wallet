@@ -19,7 +19,7 @@ RUN mkdir -p /root/tmp && \
             ./bootstrap.sh --prefix=/usr &&\
             ./b2 install \
           ) \
-        ) &&\
+        ) \
     ) && \
     ( \
         cd /root/tmp ;\
