@@ -1,5 +1,5 @@
 
-FROM teego/steem-base:latest
+FROM teego/steem-base:0.2
 
 MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
@@ -7,23 +7,31 @@ ENV DEBIAN_FRONTEND="noninteractive"
 
 ENV STEEMD_ARGS="--replay-blockchain"
 
-RUN mkdir -p /root/src
-
-RUN cd /root/src ;\
-    git clone https://github.com/steemit/steem.git steem &&\
+RUN echo "Boost library" &&\
     ( \
-      cd steem ;\
-      ( \
-        git checkout v0.12.2 &&\
-        git submodule update --init --recursive &&\
-        cmake \
-          -DENABLE_CONTENT_PATCHING=OFF \
-          -DLOW_MEMORY_NODE=ON \
-          CMakeLists.txt &&\
-        make install \
-      ) \
+        apt-get install -qy --no-install-recommends \
+        libboost-all-dev \
+    ) && \
+    apt-get clean -qy
+
+RUN mkdir -p /root/src && \
+    ( \
+        cd /root/src; \
+        git clone https://github.com/steemit/steem.git steem &&\
+        ( \
+            cd steem; \
+            ( \
+                git checkout v0.12.2 &&\
+                git submodule update --init --recursive &&\
+                cmake \
+                  -DENABLE_CONTENT_PATCHING=OFF \
+                  -DLOW_MEMORY_NODE=ON \
+                  CMakeLists.txt &&\
+                make install \
+            ) \
+        ) \
     )
-    
+
 RUN mkdir -p /witness_node_data_dir &&\
     touch /witness_node_data_dir/.default_dir
 
