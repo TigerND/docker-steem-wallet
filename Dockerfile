@@ -5,7 +5,7 @@ MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
-ENV STEEMD_ARGS="--replay-blockchain"
+ENV STEEMD_ARGS="--genesis-timestamp"
 
 RUN mkdir -p /root/src
 
