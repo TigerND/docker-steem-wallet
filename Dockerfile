@@ -16,6 +16,7 @@ RUN echo "Boost library" &&\
 
 RUN mkdir -p /root/src && \
     ( \
+        git clone https://github.com/steemit/steem.git steem &&\
         cd steem ;\
         ( \
             git checkout v0.12.2 &&\
