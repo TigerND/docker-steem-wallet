@@ -18,7 +18,7 @@ RUN cd /root/src ;\
         git submodule update --init --recursive &&\
         cmake \
           -DENABLE_CONTENT_PATCHING=OFF \
-          -DLOW_MEMORY_NODE=ON \
+          -DLOW_MEMORY_NODE=OFF \
           CMakeLists.txt &&\
         make install \
       ) \
