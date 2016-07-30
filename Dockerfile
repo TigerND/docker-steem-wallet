@@ -1,5 +1,5 @@
 
-FROM teego/steem-base:latest
+FROM teego/steem-base:0.2
 
 MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
@@ -7,10 +7,14 @@ ENV DEBIAN_FRONTEND="noninteractive"
 
 ENV STEEMD_ARGS="--genesis-timestamp"
 
-RUN mkdir -p /root/src
+RUN echo "Boost library" &&\
+    ( \
+        apt-get install -qy --no-install-recommends \
+        libboost-all-dev \
+    ) && \
+    apt-get clean -qy
 
-RUN cd /root/src ;\
-    git clone https://github.com/steemit/steem.git steem &&\
+RUN mkdir -p /root/src && \
     ( \
         cd steem ;\
         ( \
@@ -27,7 +31,7 @@ RUN cd /root/src ;\
         cd /root/src ;\
         rm -Rf steem \
     )
-    
+
 RUN mkdir -p /witness_node_data_dir &&\
     touch /witness_node_data_dir/.default_dir
 
