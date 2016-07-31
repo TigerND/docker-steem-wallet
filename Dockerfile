@@ -5,7 +5,7 @@ MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
-ENV STEEMD_ARGS="--genesis-timestamp"
+ENV STEEMD_ARGS="--rpc-endpoint"
 
 RUN echo "Boost library" &&\
     ( \
