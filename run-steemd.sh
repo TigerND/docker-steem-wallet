@@ -10,7 +10,7 @@ if [[ ! -f /witness_node_data_dir/config.ini ]]; then
     echo "Sample config file is copied to your data dir."
 fi
 
-/usr/local/bin/steemd --p2p-endpoint 0.0.0.0:2001 --rpc-endpoint 0.0.0.0:8090 ${STEEMD_ARGS} $*
+/usr/local/bin/steemd ${STEEMD_ARGS} $*
 
 if [[ $? -ne 0 ]]; then
     echo "Exited with error"
