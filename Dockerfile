@@ -19,7 +19,7 @@ RUN mkdir -p /root/src && \
         git clone https://github.com/steemit/steem.git steem &&\
         cd steem ;\
         ( \
-            git checkout v0.12.2 &&\
+            git checkout v0.12.3 &&\
             git submodule update --init --recursive &&\
             cmake \
                 -DENABLE_CONTENT_PATCHING=OFF \
