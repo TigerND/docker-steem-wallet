@@ -5,7 +5,7 @@ MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
-ENV STEEMD_ARGS="--replay-blockchain"
+ENV STEEMD_ARGS="--p2p-endpoint 0.0.0.0:2001 --rpc-endpoint 0.0.0.0:8090"
 
 RUN cho "Boost library" &&\
     mkdir -p /root/tmp && \
@@ -29,20 +29,21 @@ RUN cho "Boost library" &&\
 
 RUN mkdir -p /root/src && \
     ( \
-        cd /root/src; \
         git clone https://github.com/steemit/steem.git steem &&\
+        cd steem ;\
         ( \
-            cd steem; \
-            ( \
-                git checkout v0.12.2 &&\
-                git submodule update --init --recursive &&\
-                cmake \
-                  -DENABLE_CONTENT_PATCHING=OFF \
-                  -DLOW_MEMORY_NODE=ON \
-                  CMakeLists.txt &&\
-                make install \
-            ) \
+            git checkout v0.12.2 &&\
+            git submodule update --init --recursive &&\
+            cmake \
+                -DENABLE_CONTENT_PATCHING=OFF \
+                -DLOW_MEMORY_NODE=OFF \
+                CMakeLists.txt &&\
+            make install \
         ) \
+    ) &&\
+    ( \
+        cd /root/src ;\
+        rm -Rf steem \
     )
 
 RUN mkdir -p /witness_node_data_dir &&\
