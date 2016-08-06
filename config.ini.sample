@@ -6,13 +6,18 @@ p2p-endpoint = 0.0.0.0:2001
 
 # P2P nodes to connect to on startup (may specify multiple times)
 # seed-node =
-seed-node = 45.32.186.90:1779
-seed-node = 45.32.186.90:1781
+seed-node = 52.38.66.234:2001
+seed-node = 52.37.169.52:2001
+seed-node = 52.26.78.244:2001
 seed-node = 192.99.4.226:2001
 seed-node = 46.252.27.1:1337
 seed-node = 81.89.101.133:2001
 seed-node = 52.4.250.181:39705
-seed-node = 85.214.65.220:2001
+seed-node = steemd.pharesim.me:2001
+seed-node = seed.steemed.net:2001
+seed-node = steem.clawmap.com:2001
+seed-node = seed.steemwitness.com:2001
+seed-node = steem-seed1.abit-more.com:2001
 
 # Pairs of [BLOCK_NUM,BLOCK_ID] that should be enforced as checkpoints.
 # checkpoint =
