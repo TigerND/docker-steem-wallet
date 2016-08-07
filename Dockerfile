@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND="noninteractive"
 
 ENV STEEMD_ARGS="--p2p-endpoint 0.0.0.0:2001 --rpc-endpoint 0.0.0.0:8090"
 
-RUN cho "Boost library" &&\
+RUN echo "Boost library" &&\
     mkdir -p /root/tmp && \
     ( \
         cd /root/tmp; \
