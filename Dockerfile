@@ -6,15 +6,17 @@ ENV DEBIAN_FRONTEND="noninteractive"
 
 ENV STEEMD_ARGS="--p2p-endpoint 0.0.0.0:2001 --rpc-endpoint 0.0.0.0:8090"
 
+ENV BOOST_VERSION 1.60.0
+
 RUN echo "Boost library" &&\
     mkdir -p /root/tmp && \
     ( \
         cd /root/tmp; \
-        wget -O boost_1_60_0.tar.gz \
-            http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz/download &&\
-        tar xfz boost_1_60_0.tar.gz &&\
+        wget -O boost_`echo $BOOST_VERSION | sed 's/\./_/g'`.tar.gz \
+            http://sourceforge.net/projects/boost/files/boost/$BOOST_VERSION/boost_`echo $BOOST_VERSION | sed 's/\./_/g'`.tar.gz/download &&\
+        tar xfz boost_`echo $BOOST_VERSION | sed 's/\./_/g'`.tar.gz &&\
         ( \
-          cd boost_1_60_0; \
+          cd boost_`echo $BOOST_VERSION | sed 's/\./_/g'`; \
           ( \
             ./bootstrap.sh --prefix=/usr &&\
             ./b2 install \
@@ -23,15 +25,17 @@ RUN echo "Boost library" &&\
     ) && \
     ( \
         cd /root/tmp; \
-        rm -Rf boost_1_60_0 boost_1_60_0.tar.gz \
+        rm -Rf boost_`echo $BOOST_VERSION | sed 's/\./_/g'` boost_`echo $BOOST_VERSION | sed 's/\./_/g'`.tar.gz \
     )
+
+ENV STEEM_VERSION 0.12.3
 
 RUN mkdir -p /root/src && \
     ( \
         git clone https://github.com/steemit/steem.git steem &&\
         cd steem ;\
         ( \
-            git checkout v0.12.3 &&\
+            git checkout v$STEEM_VERSION &&\
             git submodule update --init --recursive &&\
             cmake \
                 -DCMAKE_BUILD_TYPE=Release \
