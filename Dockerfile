@@ -1,5 +1,4 @@
-
-FROM teego/steem-base:0.2-Ubuntu-trusty
+FROM teego/steem-base:0.2
 
 MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
@@ -8,24 +7,11 @@ ENV DEBIAN_FRONTEND="noninteractive"
 ENV STEEMD_ARGS="--p2p-endpoint 0.0.0.0:2001 --rpc-endpoint 0.0.0.0:8090"
 
 RUN echo "Boost library" &&\
-    mkdir -p /root/tmp && \
     ( \
-        cd /root/tmp; \
-        wget -O boost_1_60_0.tar.gz \
-            http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz/download &&\
-        tar xfz boost_1_60_0.tar.gz &&\
-        ( \
-          cd boost_1_60_0; \
-          ( \
-            ./bootstrap.sh --prefix=/usr &&\
-            ./b2 install \
-          ) \
-        ) \
+        apt-get install -qy --no-install-recommends \
+        libboost-all-dev \
     ) && \
-    ( \
-        cd /root/tmp; \
-        rm -Rf boost_1_60_0 boost_1_60_0.tar.gz \
-    )
+    apt-get clean -qy
 
 RUN mkdir -p /root/src && \
     ( \
