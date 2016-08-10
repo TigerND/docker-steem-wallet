@@ -34,8 +34,7 @@ RUN mkdir -p /root/src && \
             git checkout v0.12.3 &&\
             git submodule update --init --recursive &&\
             cmake \
-                -DENABLE_CONTENT_PATCHING=OFF \
-                -DLOW_MEMORY_NODE=OFF \
+                -DCMAKE_BUILD_TYPE=Release \
                 CMakeLists.txt &&\
             make install \
         ) \
