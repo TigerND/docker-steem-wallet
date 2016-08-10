@@ -1,5 +1,4 @@
-
-FROM teego/steem-base:0.2-Ubuntu-trusty
+FROM teego/steem-base:0.2
 
 MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
@@ -49,7 +48,7 @@ RUN mkdir -p /root/src && \
 RUN mkdir -p /witness_node_data_dir &&\
     touch /witness_node_data_dir/.default_dir
 
-ADD config.ini.sample /root/src
+ADD config.ini /root/src/config.ini.sample
 ADD run-steemd.sh /usr/local/bin
 
 EXPOSE 2001 8090
