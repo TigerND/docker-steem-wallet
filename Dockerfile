@@ -13,12 +13,14 @@ RUN echo "Boost library" &&\
     ) && \
     apt-get clean -qy
 
+ENV STEEM_VERSION 0.12.3
+
 RUN mkdir -p /root/src && \
     ( \
         git clone https://github.com/steemit/steem.git steem &&\
         cd steem ;\
         ( \
-            git checkout v0.12.3 &&\
+            git checkout v$STEEM_VERSION &&\
             git submodule update --init --recursive &&\
             cmake \
                 -DCMAKE_BUILD_TYPE=Release \
