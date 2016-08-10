@@ -32,7 +32,7 @@ RUN mkdir -p /root/src &&\
     ( \
         rm -Rf /root/src \
     )
-    
+
 RUN mkdir -p /witness_node_data_dir &&\
     touch /witness_node_data_dir/.default_dir
 
