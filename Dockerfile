@@ -16,7 +16,6 @@ RUN echo "Boost library" &&\
 ENV STEEM_VERSION 0.12.3a
 
 RUN mkdir -p /root/src &&\
-    mkdir -p /root/dist/steem-v$STEEM_VERSION &&\
     ( \
         git clone https://github.com/steemit/steem.git steem &&\
         cd steem ;\
@@ -25,25 +24,31 @@ RUN mkdir -p /root/src &&\
             git submodule update --init --recursive &&\
             cmake \
                 -DCMAKE_BUILD_TYPE=Release \
-                -DCMAKE_INSTALL_PREFIX=/root/dist/steem-v$STEEM_VERSION \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
                 CMakeLists.txt &&\
             make install \
         ) \
     ) &&\
     ( \
+        rm -Rf /root/src \
+    )
+    
+RUN mkdir -p /root/dist/steem-v$STEEM_VERSION/bin &&\
+    ( \
         cd /root/dist; \
         (\
-            echo "Building a package" &&\
-            tar cfz /root/steem-v$STEEM_VERSION.tar.gz steem-v$STEEM_VERSION &&\
-            sha256sum steem-v$STEEM_VERSION.tar.gz \
+            cp /usr/local/bin/steemd steem-v$STEEM_VERSION/bin/ &&\
+            cp /usr/local/bin/cli_wallet steem-v$STEEM_VERSION/bin/ &&\
+            tar cfz /root/steem-v$STEEM_VERSION.tar.gz steem-v$STEEM_VERSION \
         ) \
     ) && \
     ( \
-        cd /usr/local; \
-        tar xfz /root/steem-v$STEEM_VERSION.tar.gz --strip 1 \
-    ) &&\
+        rm -Rf /root/dist \
+    )
+    
+RUN cd /root; \
     ( \
-        rm -Rf /root/src /root/dist \
+        sha256sum /root/steem-v$STEEM_VERSION.tar.gz \
     )
 
 RUN mkdir -p /witness_node_data_dir &&\
