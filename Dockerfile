@@ -1,5 +1,5 @@
 
-FROM teego/steem-base:0.2
+FROM teego/steem-base:0.2-Ubuntu-trusty
 
 MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
@@ -8,11 +8,24 @@ ENV DEBIAN_FRONTEND="noninteractive"
 ENV STEEMD_ARGS="--p2p-endpoint 0.0.0.0:2001 --rpc-endpoint 0.0.0.0:8090"
 
 RUN echo "Boost library" &&\
+    mkdir -p /root/tmp && \
     ( \
-        apt-get install -qy --no-install-recommends \
-        libboost-all-dev \
+        cd /root/tmp; \
+        wget -O boost_1_60_0.tar.gz \
+            http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz/download &&\
+        tar xfz boost_1_60_0.tar.gz &&\
+        ( \
+          cd boost_1_60_0; \
+          ( \
+            ./bootstrap.sh --prefix=/usr &&\
+            ./b2 install \
+          ) \
+        ) \
     ) && \
-    apt-get clean -qy
+    ( \
+        cd /root/tmp; \
+        rm -Rf boost_1_60_0 boost_1_60_0.tar.gz \
+    )
 
 RUN mkdir -p /root/src && \
     ( \
@@ -36,7 +49,7 @@ RUN mkdir -p /root/src && \
 RUN mkdir -p /witness_node_data_dir &&\
     touch /witness_node_data_dir/.default_dir
 
-ADD config.ini.sample /root/src
+ADD config.ini /root/src/config.ini.sample
 ADD run-steemd.sh /usr/local/bin
 
 EXPOSE 2001 8090
