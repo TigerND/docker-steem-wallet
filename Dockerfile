@@ -33,24 +33,6 @@ RUN mkdir -p /root/src &&\
         rm -Rf /root/src \
     )
     
-RUN mkdir -p /root/dist/steem-v$STEEM_VERSION/bin &&\
-    ( \
-        cd /root/dist; \
-        (\
-            cp /usr/local/bin/steemd steem-v$STEEM_VERSION/bin/ &&\
-            cp /usr/local/bin/cli_wallet steem-v$STEEM_VERSION/bin/ &&\
-            tar cfz /root/steem-v$STEEM_VERSION.tar.gz steem-v$STEEM_VERSION \
-        ) \
-    ) && \
-    ( \
-        rm -Rf /root/dist \
-    )
-    
-RUN cd /root; \
-    ( \
-        sha256sum /root/steem-v$STEEM_VERSION.tar.gz \
-    )
-
 RUN mkdir -p /witness_node_data_dir &&\
     touch /witness_node_data_dir/.default_dir
 
