@@ -30,7 +30,7 @@ RUN echo "Boost library" &&\
 
 ENV STEEM_VERSION 0.12.3a
 
-RUN mkdir -p /root/src && \
+RUN mkdir -p /root/src &&\
     ( \
         git clone https://github.com/steemit/steem.git steem &&\
         cd steem ;\
@@ -39,13 +39,13 @@ RUN mkdir -p /root/src && \
             git submodule update --init --recursive &&\
             cmake \
                 -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
                 CMakeLists.txt &&\
             make install \
         ) \
     ) &&\
     ( \
-        cd /root/src ;\
-        rm -Rf steem \
+        rm -Rf /root/src \
     )
 
 RUN mkdir -p /witness_node_data_dir &&\
