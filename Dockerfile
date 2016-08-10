@@ -9,7 +9,7 @@ ENV STEEMD_ARGS="--p2p-endpoint 0.0.0.0:2001 --rpc-endpoint 0.0.0.0:8090"
 RUN echo "Boost library" &&\
     ( \
         apt-get install -qy --no-install-recommends \
-        libboost-all-dev \
+            libboost-all-dev \
     ) && \
     apt-get clean -qy
 
@@ -21,8 +21,7 @@ RUN mkdir -p /root/src && \
             git checkout v0.12.3 &&\
             git submodule update --init --recursive &&\
             cmake \
-                -DENABLE_CONTENT_PATCHING=OFF \
-                -DLOW_MEMORY_NODE=OFF \
+                -DCMAKE_BUILD_TYPE=Release \
                 CMakeLists.txt &&\
             make install \
         ) \
