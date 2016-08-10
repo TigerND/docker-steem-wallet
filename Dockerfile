@@ -28,7 +28,7 @@ RUN echo "Boost library" &&\
         rm -Rf boost_`echo $BOOST_VERSION | sed 's/\./_/g'` boost_`echo $BOOST_VERSION | sed 's/\./_/g'`.tar.gz \
     )
 
-ENV STEEM_VERSION 0.12.3
+ENV STEEM_VERSION 0.12.3a
 
 RUN mkdir -p /root/src && \
     ( \
