@@ -13,7 +13,7 @@ RUN echo "Boost library" &&\
     ) && \
     apt-get clean -qy
 
-ENV STEEM_VERSION 0.12.3
+ENV STEEM_VERSION 0.12.3a
 
 RUN mkdir -p /root/src && \
     ( \
