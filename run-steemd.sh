@@ -1,20 +1,19 @@
 #!/bin/bash
 
 if [[ -f /witness_node_data_dir/.default_dir ]]; then
-    echo "Volumes are not configured."
-    exit 1
+    echo "WARN: Volumes are not configured." 1>&2
 fi
 
 if [[ ! -f /witness_node_data_dir/config.ini ]]; then
-    cp /root/src/config.ini.sample /witness_node_data_dir/config.ini
-    echo "Sample config file is copied to your data dir."
+    cp $FILESROOT/config.ini.sample /witness_node_data_dir/config.ini
+    echo "INFO: Sample config file is copied to your data dir."
 fi
 
 /usr/local/bin/steemd ${STEEMD_ARGS} $*
 
 if [[ $? -ne 0 ]]; then
-    echo "Exited with error"
+    echo "FAIL: Exited with error" 1>&2
     exit 1
 else
-    echo "Exited normally"
+    echo "INFO: Exited normally"
 fi
