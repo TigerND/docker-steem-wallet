@@ -10,5 +10,11 @@ Steem is an experimental Proof of Work blockchain with an unproven consensus alg
 
 #### Supported tags
 
-* `latest`, `0.12.2` - Version 0.12.2 based on Ubuntu 16.04
-* `0.12.2-Ubuntu-trusty` - Version 0.12.2 based on Ubuntu 14.04
+| Tags | Version | Base Image |
+|---|---|---|
+| **[latest](#)**, **[0.13.0](#)**, [0.13.0-Ubuntu-xenial](#) | [0.13.0-rc3](https://github.com/steemit/steem/releases/tag/0.13.0-rc3) | **[Ubuntu 16.04 (Xenial)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/xenial/Dockerfile)** |
+| [0.13.0-Ubuntu-trusty](#) | [0.13.0-rc3](https://github.com/steemit/steem/releases/tag/0.13.0-rc3) | [Ubuntu 14.04 (Trusty)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/trusty/Dockerfile) |
+| **[0.12.3](#)**, [0.12.3-Ubuntu-xenial](#) | [0.12.3a](https://github.com/steemit/steem/releases/tag/v0.12.3a) | **[Ubuntu 16.04 (Xenial)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/xenial/Dockerfile)** |
+| [0.12.3-Ubuntu-trusty](#) | [0.12.3a](https://github.com/steemit/steem/releases/tag/v0.12.3a) | [Ubuntu 14.04 (Trusty)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/trusty/Dockerfile) |
+| **[0.12.2](#)**, [0.12.2-Ubuntu-xenial](#) | [0.12.2](https://github.com/steemit/steem/releases/tag/v0.12.2) | **[Ubuntu 16.04 (Xenial)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/xenial/Dockerfile)** |
+| [0.12.2-Ubuntu-trusty](#) | [0.12.2](https://github.com/steemit/steem/releases/tag/v0.12.2) | [Ubuntu 14.04 (Trusty)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/trusty/Dockerfile) |
