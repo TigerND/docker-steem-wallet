@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-FROM teego/steem-base:0.3-Ubuntu-xenial
+FROM teego/steem-base:0.3-Ubuntu-trusty
 
 MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
@@ -27,14 +27,27 @@ RUN echo "Development requirements" &&\
     ) && \
     apt-get clean -qy
 
-RUN echo "Boost library" &&\
-    ( \
-        apt-get install -qy --no-install-recommends \
-            libboost-all-dev \
-    ) && \
-    apt-get clean -qy
+ENV BOOST_VERSION 1.60.0
 
-RUN apt-cache show libboost-all-dev
+RUN echo "Boost library" &&\
+    mkdir -p /root/tmp && \
+    ( \
+        cd /root/tmp; \
+        wget -O boost_`echo $BOOST_VERSION | sed 's/\./_/g'`.tar.gz \
+            http://sourceforge.net/projects/boost/files/boost/$BOOST_VERSION/boost_`echo $BOOST_VERSION | sed 's/\./_/g'`.tar.gz/download &&\
+        tar xfz boost_`echo $BOOST_VERSION | sed 's/\./_/g'`.tar.gz &&\
+        ( \
+          cd boost_`echo $BOOST_VERSION | sed 's/\./_/g'`; \
+          ( \
+            ./bootstrap.sh --prefix=/usr &&\
+            ./b2 install \
+          ) \
+        ) \
+    ) && \
+    ( \
+        cd /root/tmp; \
+        rm -Rf boost_`echo $BOOST_VERSION | sed 's/\./_/g'` boost_`echo $BOOST_VERSION | sed 's/\./_/g'`.tar.gz \
+    )
 
 ENV STEEM_VERSION 0.13.0
 ENV STEEM_RELEASE $STEEM_VERSION-rc3
