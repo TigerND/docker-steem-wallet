@@ -4,9 +4,6 @@ FROM teego/steem-devel:0.3-Ubuntu-trusty
 
 MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
-# Automatic build has been temporarily disabled
-RUN /bin/false
-
 ENV BUILDBASE /r
 ENV BUILDROOT $BUILDBASE/build
 ENV FILESROOT $BUILDBASE/files
