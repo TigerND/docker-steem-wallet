@@ -1,26 +1,26 @@
-FROM teego/steem-base:0.2
+# -*- coding: utf-8 -*-
+
+FROM teego/steem-devel:0.3-Ubuntu-xenial
 
 MAINTAINER Aleksandr Zykov <tiger@mano.email>
 
-ENV DEBIAN_FRONTEND="noninteractive"
+ENV STEEM_VERSION 0.13.0
+ENV STEEM_RELEASE $STEEM_VERSION-rc3
 
 ENV STEEMD_ARGS="--p2p-endpoint 0.0.0.0:2001 --rpc-endpoint 0.0.0.0:8090"
 
-RUN echo "Boost library" &&\
-    ( \
-        apt-get install -qy --no-install-recommends \
-            libboost-all-dev \
-    ) && \
-    apt-get clean -qy
+ENV BUILDBASE /r
+ENV BUILDROOT $BUILDBASE/build
+ENV FILESROOT $BUILDBASE/files
 
-ENV STEEM_VERSION 0.12.3a
+RUN mkdir -p $BUILDROOT $FILESROOT
 
-RUN mkdir -p /root/src &&\
+RUN cd $BUILDROOT && \
     ( \
         git clone https://github.com/steemit/steem.git steem &&\
         cd steem ;\
         ( \
-            git checkout v$STEEM_VERSION &&\
+            git checkout $STEEM_RELEASE &&\
             git submodule update --init --recursive &&\
             cmake \
                 -DCMAKE_BUILD_TYPE=Release \
@@ -30,13 +30,13 @@ RUN mkdir -p /root/src &&\
         ) \
     ) &&\
     ( \
-        rm -Rf /root/src \
+        rm -Rf $BUILDROOT/steem \
     )
 
 RUN mkdir -p /witness_node_data_dir &&\
     touch /witness_node_data_dir/.default_dir
 
-ADD config.ini /root/src/config.ini.sample
+ADD config.ini $FILESROOT/config.ini.sample
 ADD run-steemd.sh /usr/local/bin
 
 EXPOSE 2001 8090
