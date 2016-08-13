@@ -12,7 +12,7 @@ fi
 /usr/local/bin/steemd ${STEEMD_ARGS} $*
 
 if [[ $? -ne 0 ]]; then
-    echo "FAIL: Exited with error" 1>&2
+    echo "FAIL: Exited with errors" 1>&2
     exit 1
 else
     echo "INFO: Exited normally"
