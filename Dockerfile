@@ -36,7 +36,8 @@ RUN echo "Boost library" &&\
 
 RUN apt-cache show libboost-all-dev
 
-ENV STEEM_VERSION 0.12.3a
+ENV STEEM_VERSION 0.13.0
+ENV STEEM_RELEASE $STEEM_VERSION-rc3
 
 ENV STEEMD_ARGS="--p2p-endpoint 0.0.0.0:2001 --rpc-endpoint 0.0.0.0:8090"
 
@@ -46,11 +47,12 @@ ENV FILESROOT $BUILDBASE/files
 
 RUN mkdir -p $BUILDROOT $FILESROOT
 
-RUN ( \
+RUN cd $BUILDROOT && \
+    ( \
         git clone https://github.com/steemit/steem.git steem &&\
         cd steem ;\
         ( \
-            git checkout v$STEEM_VERSION &&\
+            git checkout $STEEM_RELEASE &&\
             git submodule update --init --recursive &&\
             cmake \
                 -DCMAKE_BUILD_TYPE=Release \
