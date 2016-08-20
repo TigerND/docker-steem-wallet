@@ -1,4 +1,7 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/TigerND/docker-steem-wallet)
+[![Layers](https://images.microbadger.com/badges/image/teego/steem-wallet.svg)](http://microbadger.com/images/teego/steem-wallet "Get your own image badge on microbadger.com")
+[![Automated build](https://img.shields.io/docker/automated/teego/steem-wallet.svg)]()
+[![Pulls](https://img.shields.io/docker/pulls/teego/steem-wallet.svg)]()
 
 #### Introducing Steem (beta)
 
@@ -12,8 +15,8 @@ Steem is an experimental Proof of Work blockchain with an unproven consensus alg
 
 | Tags | Version | Base Image |
 |---|---|---|
-| **[latest](#)**, **[0.13.0](#)**, [0.13.0-Ubuntu-xenial](#) | [0.13.0-rc3](https://github.com/steemit/steem/releases/tag/0.13.0-rc3) | **[Ubuntu 16.04 (Xenial)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/xenial/Dockerfile)** |
-| [0.13.0-Ubuntu-trusty](#) | [0.13.0-rc3](https://github.com/steemit/steem/releases/tag/0.13.0-rc3) | [Ubuntu 14.04 (Trusty)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/trusty/Dockerfile) |
+| **[latest](#)**, **[0.13.0](#)**, [0.13.0-Ubuntu-xenial](#) | [0.13.0](https://github.com/steemit/steem/releases/tag/v0.13.0) | **[Ubuntu 16.04 (Xenial)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/xenial/Dockerfile)** |
+| [0.13.0-Ubuntu-trusty](#) | [0.13.0](https://github.com/steemit/steem/releases/tag/v0.13.0) | [Ubuntu 14.04 (Trusty)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/trusty/Dockerfile) |
 | **[0.12.3](#)**, [0.12.3-Ubuntu-xenial](#) | [0.12.3a](https://github.com/steemit/steem/releases/tag/v0.12.3a) | **[Ubuntu 16.04 (Xenial)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/xenial/Dockerfile)** |
 | [0.12.3-Ubuntu-trusty](#) | [0.12.3a](https://github.com/steemit/steem/releases/tag/v0.12.3a) | [Ubuntu 14.04 (Trusty)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/trusty/Dockerfile) |
 | **[0.12.2](#)**, [0.12.2-Ubuntu-xenial](#) | [0.12.2](https://github.com/steemit/steem/releases/tag/v0.12.2) | **[Ubuntu 16.04 (Xenial)](https://github.com/tianon/docker-brew-ubuntu-core/blob/3485528d76452eff9e7d3b3f222bd21a966659a5/xenial/Dockerfile)** |
