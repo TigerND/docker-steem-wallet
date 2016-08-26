@@ -31,6 +31,27 @@ RUN cd $BUILDROOT && \
         rm -Rf $BUILDROOT/steem \
     )
 
+RUN cd $BUILDROOT && \
+    ( \
+        git clone https://github.com/steemit/steem.git steem &&\
+        cd steem ;\
+        ( \
+            git checkout $STEEM_RELEASE &&\
+            git submodule update --init --recursive &&\
+            cmake \
+                -DCMAKE_BUILD_TYPE=Release \
+                -DLOW_MEMORY_NODE=ON \
+                -DENABLE_CONTENT_PATCHING=OFF \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
+                CMakeLists.txt &&\
+            make steemd &&\
+            cp programs/steemd/steemd /usr/local/bin/steemd_lowmem \
+        ) \
+    ) &&\
+    ( \
+        rm -Rf $BUILDROOT/steem \
+    )
+
 RUN mkdir -p /witness_node_data_dir &&\
     touch /witness_node_data_dir/.default_dir
 
