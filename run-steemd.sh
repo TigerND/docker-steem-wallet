@@ -9,7 +9,7 @@ if [[ ! -f /witness_node_data_dir/config.ini ]]; then
     echo "INFO: Sample config file is copied to your data dir."
 fi
 
-/usr/local/bin/steemd ${STEEMD_ARGS} $*
+${STEEMD_EXEC} ${STEEMD_ARGS} $*
 
 if [[ $? -ne 0 ]]; then
     echo "FAIL: Exited with errors" 1>&2
