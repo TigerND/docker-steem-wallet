@@ -31,11 +31,33 @@ RUN cd $BUILDROOT && \
         rm -Rf $BUILDROOT/steem \
     )
 
+RUN cd $BUILDROOT && \
+    ( \
+        git clone https://github.com/steemit/steem.git steem &&\
+        cd steem ;\
+        ( \
+            git checkout $STEEM_RELEASE &&\
+            git submodule update --init --recursive &&\
+            cmake \
+                -DCMAKE_BUILD_TYPE=Release \
+                -DLOW_MEMORY_NODE=ON \
+                -DENABLE_CONTENT_PATCHING=OFF \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
+                CMakeLists.txt &&\
+            make steemd &&\
+            cp programs/steemd/steemd /usr/local/bin/steemd_lowmem \
+        ) \
+    ) &&\
+    ( \
+        rm -Rf $BUILDROOT/steem \
+    )
+
 RUN mkdir -p /witness_node_data_dir &&\
     touch /witness_node_data_dir/.default_dir
 
 ADD config.ini $FILESROOT/config.ini.sample
 
+ENV STEEMD_EXEC="/usr/local/bin/steemd"
 ENV STEEMD_ARGS="--p2p-endpoint=0.0.0.0:2001 --rpc-endpoint=0.0.0.0:8090 --replay-blockchain"
 
 ADD run-steemd.sh /usr/local/bin
