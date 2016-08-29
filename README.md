@@ -1,4 +1,7 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/TigerND/docker-steem-wallet)
+[![Layers](https://images.microbadger.com/badges/image/teego/steem-wallet.svg)](http://microbadger.com/images/teego/steem-wallet "Get your own image badge on microbadger.com")
+[![Automated build](https://img.shields.io/docker/automated/teego/steem-wallet.svg)]()
+[![Pulls](https://img.shields.io/docker/pulls/teego/steem-wallet.svg)]()
 
 #### Introducing Steem (beta)
 

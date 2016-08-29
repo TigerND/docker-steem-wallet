@@ -11,7 +11,7 @@ ENV FILESROOT $BUILDBASE/files
 RUN mkdir -p $BUILDROOT $FILESROOT
 
 ENV STEEM_VERSION 0.13.0
-ENV STEEM_RELEASE $STEEM_VERSION-rc3
+ENV STEEM_RELEASE v$STEEM_VERSION
 
 RUN cd $BUILDROOT && \
     ( \
@@ -36,7 +36,7 @@ RUN mkdir -p /witness_node_data_dir &&\
 
 ADD config.ini $FILESROOT/config.ini.sample
 
-ENV STEEMD_ARGS="--p2p-endpoint 0.0.0.0:2001 --rpc-endpoint 0.0.0.0:8090"
+ENV STEEMD_ARGS="--p2p-endpoint=0.0.0.0:2001 --rpc-endpoint=0.0.0.0:8090 --replay-blockchain"
 
 ADD run-steemd.sh /usr/local/bin
 
