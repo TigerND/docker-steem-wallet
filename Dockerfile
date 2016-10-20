@@ -11,14 +11,12 @@ ENV FILESROOT $BUILDBASE/files
 RUN mkdir -p $BUILDROOT $FILESROOT
 
 ENV STEEM_VERSION 0.14.2
-ENV STEEM_RELEASE v$STEEM_VERSION
 
 RUN cd $BUILDROOT && \
     ( \
-        git clone https://github.com/steemit/steem.git steem &&\
+        git clone https://github.com/TigerND/steem.git steem &&\
         cd steem ;\
         ( \
-            git checkout $STEEM_RELEASE &&\
             git submodule update --init --recursive &&\
             cmake \
                 -DCMAKE_BUILD_TYPE=Release \
@@ -33,10 +31,9 @@ RUN cd $BUILDROOT && \
 
 RUN cd $BUILDROOT && \
     ( \
-        git clone https://github.com/steemit/steem.git steem &&\
+        git clone https://github.com/TigerND/steem.git steem &&\
         cd steem ;\
         ( \
-            git checkout $STEEM_RELEASE &&\
             git submodule update --init --recursive &&\
             cmake \
                 -DCMAKE_BUILD_TYPE=Release \
